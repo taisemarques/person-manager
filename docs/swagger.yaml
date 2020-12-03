@@ -1,0 +1,264 @@
+swagger: "2.0"
+info:
+  description: "Esse é um teste para avaliar conhecimentos técnicos em Java com Spring Boot, qualidade do código e linha de raciocinio."
+  version: "1.0.0"
+  title: "Person Manager"
+  termsOfService: "http://swagger.io/terms/"
+  contact: 
+    email: "guinha23@gmail.com"
+host: "petstore.swagger.io"
+basePath: "/v2"
+tags:
+- name: "persons"
+  description: "Everything about Person"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "http"
+paths:
+  /persons:
+    post:
+      tags:
+      - "persons"
+      summary: "Add a new person"
+      description: ""
+      operationId: "create"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Person object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/PersonWithoutId"
+      responses:
+        "200":
+          description: "SUCCESS"
+          schema:
+            $ref: "#/definitions/PersonWithId"
+        "409":
+          description: "CONFLICTED_CPF"
+        "450":
+          description: "EMPTY_REQUIRED_FIELD"
+        "451":
+          description: "INVALID_CPF"
+        "500":
+          description: "INTERNAL_SERVER_ERROR"
+    put:
+      tags:
+      - "persons"
+      summary: "Update a person"
+      description: ""
+      operationId: "update"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Person object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/PersonWithId"
+      responses:
+        "200":
+          description: "SUCCESS"
+          schema:
+            $ref: "#/definitions/PersonWithId"
+        "409":
+          description: "CONFLICTED_CPF"
+        "450":
+          description: "EMPTY_REQUIRED_FIELD"
+        "451":
+          description: "INVALID_CPF"
+        "500":
+          description: "INTERNAL_SERVER_ERROR"
+    get:
+      tags:
+      - "persons"
+      summary: "Find person by parameter"
+      description: "Returns a list of person"
+      operationId: "readAll"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "nome"
+        in: "query"
+        description: "Name of person to return"
+        required: false
+        type: "string"
+      - name: "cpf"
+        in: "query"
+        description: "Cpf of person to return"
+        required: false
+        type: "string"
+      - name: "dataNascimento"
+        in: "query"
+        description: "Birth's Date of person to return"
+        required: false
+        type: "string"  
+        format: "date"
+      - name: "paisNascimento"
+        in: "query"
+        description: "Birth's Country of person to return"
+        required: false
+        type: "string"  
+      - name: "estadoNascimento"
+        in: "query"
+        description: "Birth's State of person to return"
+        required: false
+        type: "string"
+      - name: "cidadeNascimento"
+        in: "query"
+        description: "Birth's City of person to return"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "SUCCESS"
+          schema:
+            $ref: "#/definitions/PersonWithId"
+        "404":
+          description: "NOT_FOUND"
+  /persons/{id}:
+    get:
+      tags:
+      - "persons"
+      summary: "Find person by ID"
+      description: "Returns a single person"
+      operationId: "read"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of person to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "SUCCESS"
+          schema:
+            $ref: "#/definitions/PersonWithId"
+        "404":
+          description: "NOT_FOUND"
+    delete:
+      tags:
+      - "persons"
+      summary: "Deletes a person by ID"
+      description: ""
+      operationId: "delete"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of person to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "SUCCESS"
+          schema:
+            $ref: "#/definitions/PersonWithId"
+        "404":
+          description: "NOT_FOUND"
+definitions:
+  PersonWithoutId:
+    type: "object"
+    required:
+    - "name"
+    - "cpf"
+    - "birthDate"
+    - "birthCountry"
+    - "birthState"
+    - "birthCity"
+    - "email"
+    properties:
+      id:
+        type: "string"
+        example: ""
+      name:
+        type: "string"
+        example: "Mary Smith"
+      cpf:
+        type: "string"
+        example: "95625899606"
+      birthDate:
+        type: "string"
+        format: "date"
+        example: "1983-11-23"
+      birthCountry:
+        type: "string"
+        example: "USA"
+      birthState:
+        type: "string"
+        example: "Nevada"
+      birthCity:
+        type: "string"
+        example: "Las Vegas"
+      fatherName:
+        type: "string"
+        example: "John Smith"
+      motherName:
+        type: "string"
+        example: "Kate Smith"
+      email:
+        type: "string"
+        format: "email"
+    xml:
+      name: "Person"
+  PersonWithId:
+    type: "object"
+    required:
+    - "name"
+    - "cpf"
+    - "birthDate"
+    - "birthCountry"
+    - "birthState"
+    - "birthCity"
+    - "email"
+    properties:
+      id:
+        type: "string"
+        format: "uuid"
+      name:
+        type: "string"
+        example: "Mary Smith"
+      cpf:
+        type: "string"
+        example: "95625899606"
+      birthDate:
+        type: "string"
+        format: "date"
+        example: "1983-11-23"
+      birthCountry:
+        type: "string"
+        example: "USA"
+      birthState:
+        type: "string"
+        example: "Nevada"
+      birthCity:
+        type: "string"
+        example: "Las Vegas"
+      fatherName:
+        type: "string"
+        example: "John Smith"
+      motherName:
+        type: "string"
+        example: "Kate Smith"
+      email:
+        type: "string"
+        format: "email"
+    xml:
+      name: "Person"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
