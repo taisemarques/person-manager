@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "b1a79280-5dba-4569-8427-868976ccb380",
+		"name": "person_manager_collection",
+		"description": "Collection to execute the following requests:\n- Add a new Person\n- Update a person\n- Delete a person by Id\n- Get all people\n- Get person by Id\n- Get people by param",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": \"\",\n        \"name\": \"Mary Smith\",\n        \"cpf\": \"84761561033\",\n        \"birthDate\": \"2000-08-15\",\n        \"birthCountry\": \"USA\",\n        \"birthState\": \"Nevada\",\n        \"birthCity\": \"Las Vegas\",\n        \"fatherName\": \"John\",\n        \"motherName\": \"Kate\",\n        \"email\": \"mary.smith@hotmail.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				},
+				"description": "This request will add a person by Json"
+			},
+			"response": []
+		},
+		{
+			"name": "Update a person",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": \"eeefaa64-3e46-45f2-87c7-6b6c65952cd4\",\n        \"name\": \"Taise B F Marques\",\n        \"cpf\": \"61642512303\",\n        \"birthDate\": \"1983-11-23\",\n        \"birthCountry\": \"Brasil\",\n        \"birthState\": \"SC\",\n        \"birthCity\": \"Criciuma\",\n        \"fatherName\": \"Mercuti O. Fernandes\",\n        \"motherName\": \"Edilene B F Fernandes\",\n        \"email\": \"taise.marques@hotmail.com\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				},
+				"description": "This request will update the person under Id eeefaa64-3e46-45f2-87c7-6b6c65952cd4"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a person by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons/eeefaa64-3e46-45f2-87c7-6b6c65952cd4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons",
+						"eeefaa64-3e46-45f2-87c7-6b6c65952cd4"
+					]
+				},
+				"description": "This request will delete the person under Id eeefaa64-3e46-45f2-87c7-6b6c65952cd4"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all people",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				},
+				"description": "This request will return all people"
+			},
+			"response": []
+		},
+		{
+			"name": "Get person by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons/1567befa-7794-4c49-8a2f-4371effb42cf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons",
+						"1567befa-7794-4c49-8a2f-4371effb42cf"
+					]
+				},
+				"description": "This request return the person under the Id 1567befa-7794-4c49-8a2f-4371effb42cf"
+			},
+			"response": []
+		},
+		{
+			"name": "Get people by param",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons?nome=Julio Marques&cidade=Campinas&data=1979-04-17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Julio Marques"
+						},
+						{
+							"key": "cidade",
+							"value": "Campinas"
+						},
+						{
+							"key": "data",
+							"value": "1979-04-17"
+						}
+					]
+				},
+				"description": "This request return all people with given parameters"
+			},
+			"response": []
+		}
+	]
+}

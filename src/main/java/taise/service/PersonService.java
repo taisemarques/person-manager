@@ -69,7 +69,7 @@ public class PersonService {
 
     public ResponseEntity<Person> update(Person person) {
         List<Person> persons = personRepository.findWithParams(null, person.getCpf(),null,null,null,null);
-        if(!persons.isEmpty()){
+        if(!persons.isEmpty() && !(persons.size() == 1 && person.getId().equals(persons.get(0).getId())) ){
             return new ResponseEntity<Person>(HttpStatus.valueOf(CONFLICTED_CPF));
         }
         int result = personRepository.update(person);

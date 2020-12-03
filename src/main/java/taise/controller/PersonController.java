@@ -2,6 +2,7 @@ package taise.controller;
 
 import taise.entity.Person;
 import taise.service.PersonService;
+import static taise.service.Utils.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
@@ -36,7 +37,7 @@ public class PersonController {
     public ResponseEntity<List<Person>> readAll(@RequestParam(name="nome", required=false) String name,
                                                 @RequestParam(name="cpf", required=false) String cpf,
                                                 @RequestParam(name="data", required=false)
-                                                    @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
+                                                    @DateTimeFormat(pattern = DATE_FORMAT) Date birthDate,
                                                 @RequestParam(name="pais", required=false) String birthCountry,
                                                 @RequestParam(name="estado", required=false) String birthState,
                                                 @RequestParam(name="cidade", required=false) String birthCity) {
